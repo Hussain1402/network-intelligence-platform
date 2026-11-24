@@ -1,7 +1,16 @@
-$ErrorActionPreference = "Stop"
+﻿$ErrorActionPreference = "Stop"
 $ProjectRoot = Split-Path -Parent $PSScriptRoot
 Set-Location $ProjectRoot
-$Python = (Get-Command python -ErrorAction Stop).Source
+$PythonVenv = Join-Path $ProjectRoot ".venv-win\Scripts\python.exe"
+
+if (Test-Path $PythonVenv) {
+    $Python = $PythonVenv
+}
+else {
+    $Python = (Get-Command python -ErrorAction Stop).Source
+}
+
+Write-Host "Using Python: $Python" -ForegroundColor Yellow
 
 function Invoke-Checked {
     param([string]$Description, [scriptblock]$Command)

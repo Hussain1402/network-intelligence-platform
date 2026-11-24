@@ -1,4 +1,4 @@
-﻿import shutil
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -16,9 +16,9 @@ class DevSecOpsIntegrationTests(unittest.TestCase):
         repository_root = Path(__file__).resolve().parents[2]
         fixture_source = (
             repository_root
-            / "devsecops"
+            / "tests"
             / "fixtures"
-            / "vulnerable_app"
+            / "devsecops_vulnerable_app"
         )
 
         with tempfile.TemporaryDirectory() as directory:

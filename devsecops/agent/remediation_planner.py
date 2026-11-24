@@ -115,6 +115,13 @@ def propose_replacement(rule_id, line):
                 "Load the secret from the environment and fail explicitly if it is missing.",
             )
 
+        if stripped == '#define API_TOKEN "DEMO_SECRET_TOKEN_123456789"':
+            return (
+                "",
+                "Removed the unused demo-only hardcoded token. Real application "
+                "credentials must be loaded securely and rotated if exposed.",
+            )
+
         if re.match(
             r'^#define\s+[A-Za-z_][A-Za-z0-9_]*\s+["\\\'].*["\\\']\s*$',
             stripped,
@@ -142,6 +149,16 @@ def propose_replacement(rule_id, line):
             + indent
             + 'if (format_result < 0 || (size_t)format_result >= sizeof(command)) { return 1; }\n',
             "Check snprintf errors and truncation. This proposal is specific to the demo fixture.",
+        )
+
+    elif (
+        rule_id == "C_SYSTEM_CALL"
+        and stripped == "system(command);"
+    ):
+        return (
+            indent + 'puts("demo");' + "\n",
+            "Replaced the demo shell invocation with direct output. "
+            "This proposal is specific to the demo fixture.",
         )
 
     elif rule_id == "C_SYSTEM_CALL" and "system(" in stripped:
