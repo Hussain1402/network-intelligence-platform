@@ -195,18 +195,18 @@ class DevSecOpsIntegrationTests(unittest.TestCase):
                 "passed",
             )
 
-            # Some supported findings should be resolved.
+            # All findings should be resolved after successful remediation.
             self.assertGreater(
                 result["summary"]["resolved_findings"],
                 0,
             )
 
-            # Manual-review findings should remain unresolved.
-            self.assertGreater(
+            self.assertEqual(
                 result["summary"]["unresolved_findings"],
                 0,
             )
-            self.assertEqual(result["status"], "partially_verified")
+
+            self.assertEqual(result["status"], "verified")
             self.assertEqual(result["execution_status"], "passed")
 
 

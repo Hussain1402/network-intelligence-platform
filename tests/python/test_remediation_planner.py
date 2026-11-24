@@ -1,7 +1,7 @@
-import json
+﻿from pathlib import Path
+import os
 import tempfile
 import unittest
-from pathlib import Path
 
 from devsecops.agent.remediation_planner import (
     apply_approved_plan,
@@ -13,6 +13,9 @@ from devsecops.agent.remediation_planner import (
 class RemediationPlannerTests(unittest.TestCase):
 
     def setUp(self):
+        self._previous_api_key = os.environ.get("API_KEY")
+        os.environ["API_KEY"] = "test-api-key-for-unit-tests"
+
         self.temp = tempfile.TemporaryDirectory()
         self.root = Path(self.temp.name)
         (self.root / "demo.py").write_text(
@@ -20,6 +23,7 @@ class RemediationPlannerTests(unittest.TestCase):
             'def calculate(expression):\n'
             '    return eval(expression)\n'
             'def run(command):\n'
+            '    import subprocess\n'
             '    return subprocess.run(command, shell=True)\n',
             encoding="utf-8",
         )
@@ -45,15 +49,14 @@ class RemediationPlannerTests(unittest.TestCase):
                 "rule_id": "PY_SUBPROCESS_SHELL",
                 "severity": "high",
                 "file": "demo.py",
-                "line": 5,
+                "line": 6,
                 "description": "Shell execution",
                 "evidence": "shell=True",
             },
         ]
 
-        self.investigations = []
-        for finding in self.findings:
-            self.investigations.append({
+        self.investigations = [
+            {
                 "rule_id": finding["rule_id"],
                 "severity": finding["severity"],
                 "location": {
@@ -63,7 +66,9 @@ class RemediationPlannerTests(unittest.TestCase):
                 "explanation": "Test explanation",
                 "potential_impact": "Test impact",
                 "recommended_remediation": "Test recommendation",
-            })
+            }
+            for finding in self.findings
+        ]
 
         self.scan = {
             "report_type": "devsecops_security_scan",
@@ -80,21 +85,35 @@ class RemediationPlannerTests(unittest.TestCase):
     def tearDown(self):
         self.temp.cleanup()
 
-    def test_generates_proposal_for_each_finding(self):
-        plan, patch = build_plan(
-            self.scan, self.investigation, self.root
+        if self._previous_api_key is None:
+            os.environ.pop("API_KEY", None)
+        else:
+            os.environ["API_KEY"] = self._previous_api_key
+
+
+    def apply_test_remediation(self):
+        result = apply_approved_plan(
+            self.scan,
+            self.investigation,
+            self.root,
+            approved=True,
         )
+        self.assertEqual(result["patches_applied"], 3)
+
+    def test_generates_proposal_for_each_finding(self):
+        plan, _ = build_plan(self.scan, self.investigation, self.root)
         self.assertEqual(plan["proposals_generated"], 3)
         self.assertEqual(plan["human_review_required"], 3)
 
-    def test_generates_patch_preview(self):
+    def test_generates_safe_subprocess_patch_preview(self):
         plan, patch = build_plan(
             self.scan, self.investigation, self.root
         )
-        self.assertIn("ast", patch)
-        self.assertNotIn("shell=False", patch)
-        self.assertIn("shell=True", patch)
+        self.assertEqual(plan["patches_generated"], 3)
         self.assertIn("literal_eval", patch)
+        self.assertIn("shell=False", patch)
+        self.assertIn("allowed_executables", patch)
+        self.assertIn("shell=True", patch)  # Removed line in the diff.
 
     def test_multiline_c_patch_has_valid_diff_lines(self):
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -132,7 +151,6 @@ class RemediationPlannerTests(unittest.TestCase):
                 "summary": {"total_findings": 1},
                 "findings": findings,
             }
-
             investigation = {
                 "report_type": "devsecops_security_investigation",
                 "summary": {"total_investigated": 1},
@@ -163,11 +181,11 @@ class RemediationPlannerTests(unittest.TestCase):
             )
 
     def test_never_modifies_source(self):
-        source = (self.root / "demo.py").read_text(encoding="utf-8")
+        original = (self.root / "demo.py").read_text(encoding="utf-8")
         build_plan(self.scan, self.investigation, self.root)
         self.assertEqual(
             (self.root / "demo.py").read_text(encoding="utf-8"),
-            source,
+            original,
         )
 
     def test_application_requires_approval_and_records_changes(self):
@@ -176,10 +194,9 @@ class RemediationPlannerTests(unittest.TestCase):
 
         with self.assertRaises(PermissionError):
             apply_approved_plan(
-                self.scan,
-                self.investigation,
-                self.root,
+                self.scan, self.investigation, self.root
             )
+
         self.assertEqual(source_path.read_bytes(), original)
 
         result = apply_approved_plan(
@@ -191,14 +208,52 @@ class RemediationPlannerTests(unittest.TestCase):
 
         updated = source_path.read_text(encoding="utf-8")
         self.assertNotIn("return eval(expression)", updated)
-        self.assertIn("shell=True", updated)
+        self.assertNotIn("shell=True", updated)
+        self.assertIn("shell=False", updated)
         self.assertTrue(result["source_modified"])
-        self.assertEqual(result["patches_applied"], 2)
+        self.assertEqual(result["patches_applied"], 3)
         self.assertEqual(len(result["applied_changes"]), 1)
         self.assertNotEqual(
             result["applied_changes"][0]["before_sha256"],
             result["applied_changes"][0]["after_sha256"],
         )
+
+    def test_remediated_subprocess_function_executes_approved_command(self):
+        self.apply_test_remediation()
+        source = (self.root / "demo.py").read_text(encoding="utf-8")
+        namespace = {}
+        exec(compile(source, "demo.py", "exec"), namespace)
+
+        result = namespace["run"](["python", "--version"])
+        self.assertEqual(result.returncode, 0)
+        self.assertIn("Python", result.stdout + result.stderr)
+
+    def test_remediated_subprocess_rejects_string_command(self):
+        self.apply_test_remediation()
+        source = (self.root / "demo.py").read_text(encoding="utf-8")
+        namespace = {}
+        exec(compile(source, "demo.py", "exec"), namespace)
+
+        with self.assertRaises(ValueError):
+            namespace["run"]("python --version")
+
+    def test_remediated_subprocess_rejects_unapproved_executable(self):
+        self.apply_test_remediation()
+        source = (self.root / "demo.py").read_text(encoding="utf-8")
+        namespace = {}
+        exec(compile(source, "demo.py", "exec"), namespace)
+
+        with self.assertRaises(ValueError):
+            namespace["run"](["cmd", "/c", "echo unsafe"])
+
+    def test_remediated_subprocess_rejects_non_string_arguments(self):
+        self.apply_test_remediation()
+        source = (self.root / "demo.py").read_text(encoding="utf-8")
+        namespace = {}
+        exec(compile(source, "demo.py", "exec"), namespace)
+
+        with self.assertRaises(ValueError):
+            namespace["run"](["python", None])
 
     def test_all_proposals_require_review(self):
         plan, _ = build_plan(

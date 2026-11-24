@@ -174,9 +174,30 @@ def propose_replacement(rule_id, line):
         )
 
     elif rule_id == "PY_SUBPROCESS_SHELL" and "shell=True" in stripped:
+        replacement_lines = [
+            f"{indent}if not isinstance(command, (list, tuple)) or not command:",
+            f'{indent}    raise ValueError("A non-empty argument list is required")',
+            f"{indent}if not all(isinstance(arg, str) and chr(0) not in arg for arg in command):",
+            f'{indent}    raise ValueError("Command arguments must be valid strings")',
+            f'{indent}allowed_executables = {{"python": __import__("sys").executable}}',
+            f'{indent}executable = allowed_executables.get(command[0])',
+            f"{indent}if executable is None:",
+            f'{indent}    raise ValueError("Executable is not allowed")',
+            f"{indent}return subprocess.run(",
+            f"{indent}    [executable, *command[1:]],",
+            f"{indent}    shell=False,",
+            f"{indent}    check=True,",
+            f"{indent}    capture_output=True,",
+            f"{indent}    text=True,",
+            f"{indent})",
+        ]
+
+        replacement = "\n".join(replacement_lines) + "\n"
+
         return (
-            None,
-            "Manual remediation: identify the executable and construct a validated argument list; use shell=False.",
+            replacement,
+            "Require a validated argument list, allow only the approved Python executable, "
+            "and execute without a shell. This proposal is specific to the demo fixture.",
         )
 
     if rule:
