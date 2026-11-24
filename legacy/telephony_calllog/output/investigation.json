@@ -1,0 +1,16 @@
+{
+  "source": "call_log_csv",
+  "summary": {
+    "total_calls": 15,
+    "successful_calls": 9,
+    "failed_calls": 6,
+    "failure_rate_percent": 40.00,
+    "average_success_duration_ms": 1333.33
+  },
+  "failure_codes": [
+    {"code": "NETWORK_TIMEOUT", "count": 6}
+  ],
+  "anomalies": [
+    {"window_start": "2026-10-14T10:01:00", "total_calls": 10, "failed_calls": 6, "failure_rate_percent": 60.00}
+  ]
+}

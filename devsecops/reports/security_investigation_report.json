@@ -1,0 +1,24 @@
+{
+    "report_type": "devsecops_security_investigation",
+    "generated_at": "2026-11-19T17:45:34.332182+00:00",
+    "investigator": "deterministic_mock_security_investigator",
+    "source_report": "devsecops_security_scan",
+    "summary": {
+        "total_investigated": 0,
+        "severity_counts": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+        },
+        "human_review_required": 0
+    },
+    "investigations": [],
+    "limitations": [
+        "This is a deterministic rule-based investigator, not a trained AI model.",
+        "Root causes are inferred from scanner rules and require manual confirmation.",
+        "The investigator does not inspect the full application context.",
+        "No source files are modified.",
+        "Remediation suggestions must be reviewed and tested by a human."
+    ]
+}

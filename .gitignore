@@ -1,0 +1,42 @@
+﻿# Python virtual environments
+.venv/
+.venv-win/
+venv/
+env/
+
+# Python cache and test artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# CMake build artifacts
+build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+*.o
+*.obj
+*.a
+*.lib
+*.dll
+*.exe
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# IDE and operating system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Temporary files and backups
+*.tmp
+src/*.backup
+
+# Generated audit archive
+network-intelligence-platform-audit.zip

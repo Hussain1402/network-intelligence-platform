@@ -1,0 +1,70 @@
+{
+  "report_type": "network_trend_report",
+  "summary": {
+    "total_measurements": 12,
+    "baseline_measurements": 3,
+    "analyzed_measurements": 9
+  },
+  "trends": [
+    {
+      "metric": "latency",
+      "detected": true,
+      "recovered": true,
+      "baseline_average": 40,
+      "observed_average": 210,
+      "deviation_percent": 425,
+      "consecutive_measurements": 3,
+      "start_timestamp": "2026-10-15T10:06:00",
+      "end_timestamp": "2026-10-15T10:08:00",
+      "recovery_timestamp": "2026-10-15T10:09:00"
+    },
+    {
+      "metric": "packet_loss",
+      "detected": true,
+      "recovered": true,
+      "baseline_average": 0.166667,
+      "observed_average": 3.03333,
+      "deviation_percent": 1720,
+      "consecutive_measurements": 6,
+      "start_timestamp": "2026-10-15T10:04:00",
+      "end_timestamp": "2026-10-15T10:09:00",
+      "recovery_timestamp": "2026-10-15T10:10:00"
+    },
+    {
+      "metric": "throughput",
+      "detected": true,
+      "recovered": true,
+      "baseline_average": 95,
+      "observed_average": 39.6667,
+      "deviation_percent": 58.2456,
+      "consecutive_measurements": 3,
+      "start_timestamp": "2026-10-15T10:06:00",
+      "end_timestamp": "2026-10-15T10:08:00",
+      "recovery_timestamp": "2026-10-15T10:09:00"
+    },
+    {
+      "metric": "error_rate",
+      "detected": true,
+      "recovered": true,
+      "baseline_average": 0.5,
+      "observed_average": 9.4,
+      "deviation_percent": 1780,
+      "consecutive_measurements": 5,
+      "start_timestamp": "2026-10-15T10:05:00",
+      "end_timestamp": "2026-10-15T10:09:00",
+      "recovery_timestamp": "2026-10-15T10:10:00"
+    },
+    {
+      "metric": "memory_usage",
+      "detected": true,
+      "recovered": true,
+      "baseline_average": 43.0667,
+      "observed_average": 71.6667,
+      "deviation_percent": 66.4087,
+      "consecutive_measurements": 3,
+      "start_timestamp": "2026-10-15T10:06:00",
+      "end_timestamp": "2026-10-15T10:08:00",
+      "recovery_timestamp": "2026-10-15T10:09:00"
+    }
+  ]
+}

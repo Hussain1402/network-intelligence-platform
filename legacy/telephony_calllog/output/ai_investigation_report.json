@@ -1,0 +1,59 @@
+{
+    "report_type": "mock_ai_network_investigation",
+    "generated_at_utc": "2026-10-14T14:15:22.562884+00:00",
+    "source": "call_log_csv",
+    "summary": {
+        "total_calls": 15,
+        "successful_calls": 9,
+        "failed_calls": 6,
+        "failure_rate_percent": 40.0,
+        "average_success_duration_ms": 1333.33
+    },
+    "observed_evidence": [
+        "6 of 15 calls failed (40.00%).",
+        "Most frequent failure code: NETWORK_TIMEOUT (6 occurrences).",
+        "Flagged window 2026-10-14T10:01:00: 6/10 calls failed (60.00%)."
+    ],
+    "root_cause_hypotheses": [
+        {
+            "hypothesis": "NETWORK_TIMEOUT failures may be caused by network latency, packet loss, an unavailable upstream service, or a short timeout setting.",
+            "confidence": "medium",
+            "status": "unconfirmed",
+            "reasoning": "The logs record 6 occurrences of NETWORK_TIMEOUT. These support further investigation but do not establish the underlying cause."
+        },
+        {
+            "hypothesis": "A localized service or network degradation may explain the elevated failure rate in this window.",
+            "confidence": "medium",
+            "status": "unconfirmed",
+            "reasoning": "An elevated failure rate was detected. Correlated telemetry is needed to identify its cause."
+        }
+    ],
+    "recommended_diagnostic_checks": [
+        {
+            "priority": "high",
+            "check": "Inspect request and response latency",
+            "purpose": "Compare failed-call latency with successful calls and the configured timeout."
+        },
+        {
+            "priority": "high",
+            "check": "Check network and upstream service health",
+            "purpose": "Review packet loss, connection errors, and upstream service logs."
+        },
+        {
+            "priority": "medium",
+            "check": "Review timeout configuration",
+            "purpose": "Verify timeout values against expected service response times."
+        },
+        {
+            "priority": "high",
+            "check": "Correlate the flagged window with system metrics",
+            "purpose": "Compare network latency, CPU, memory, service errors, and deployment events during the window."
+        }
+    ],
+    "limitations": [
+        "This is a deterministic, rule-based mock investigator.",
+        "Hypotheses are not confirmed root causes.",
+        "Only the supplied call-log evidence was analyzed.",
+        "No live network or external telemetry checks were performed."
+    ]
+}

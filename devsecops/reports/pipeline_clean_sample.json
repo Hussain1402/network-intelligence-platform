@@ -1,0 +1,207 @@
+{
+    "report_type": "devsecops_ci_pipeline",
+    "generated_at": "2026-11-19T17:45:34.489846+00:00",
+    "project_root": "C:\\Users\\dell\\Documents\\network-intelligence-platform",
+    "overall_status": "passed",
+    "execution_status": "passed",
+    "security_policy": {
+        "mode": "balanced",
+        "description": "Security findings are evaluated using the selected configurable policy profile."
+    },
+    "security": {
+        "execution_status": "passed",
+        "security_status": "no_findings",
+        "scanned_files": 1,
+        "total_findings": 0,
+        "severity_counts": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+        },
+        "scan_errors": 0,
+        "report_path": "C:\\Users\\dell\\Documents\\network-intelligence-platform\\devsecops\\reports\\security_scan_report.json"
+    },
+    "policy": {
+        "execution_status": "passed",
+        "decision": "passed",
+        "policy_mode": "balanced",
+        "total_findings": 0,
+        "severity_counts": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+        },
+        "blocked_findings": 0,
+        "warnings": 0,
+        "informational": 0,
+        "report_path": "C:\\Users\\dell\\Documents\\network-intelligence-platform\\devsecops\\reports\\security_policy_report.json"
+    },
+    "investigation": {
+        "execution_status": "passed",
+        "total_investigated": 0,
+        "severity_counts": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+        },
+        "human_review_required": 0,
+        "report_path": "C:\\Users\\dell\\Documents\\network-intelligence-platform\\devsecops\\reports\\security_investigation_report.json"
+    },
+    "remediation": {
+        "execution_status": "passed",
+        "mode": "preview_only",
+        "source_findings": 0,
+        "proposals_generated": 0,
+        "patches_generated": 0,
+        "human_review_required": 0,
+        "source_modified": false,
+        "report_path": "C:\\Users\\dell\\Documents\\network-intelligence-platform\\devsecops\\reports\\remediation_plan.json",
+        "patch_path": "C:\\Users\\dell\\Documents\\network-intelligence-platform\\devsecops\\reports\\remediation_preview.patch",
+        "verification": {
+            "execution_status": "not_run",
+            "status": "awaiting_explicit_approval",
+            "human_approval": "not_granted",
+            "original_source_unchanged": true,
+            "applied_changes": [],
+            "message": "Patch previews were generated but not applied. Pass --approve-remediation to test them in a temporary copy."
+        }
+    },
+    "summary": {
+        "total_steps": 8,
+        "passed": 8,
+        "failed": 0,
+        "skipped": 0
+    },
+    "steps": [
+        {
+            "name": "CMake Configure",
+            "command": [
+                "cmake",
+                "-S",
+                ".",
+                "-B",
+                "build",
+                "-G",
+                "MinGW Makefiles",
+                "-DCMAKE_C_COMPILER=C:/msys64/ucrt64/bin/gcc.exe",
+                "-DCMAKE_CXX_COMPILER=C:/msys64/ucrt64/bin/g++.exe"
+            ],
+            "status": "passed",
+            "return_code": 0,
+            "duration_seconds": 1.113,
+            "stdout": "-- Configuring done (0.2s)\n-- Generating done (0.4s)\n-- Build files have been written to: C:/Users/dell/Documents/network-intelligence-platform/build\n",
+            "stderr": ""
+        },
+        {
+            "name": "CMake Build",
+            "command": [
+                "cmake",
+                "--build",
+                "build"
+            ],
+            "status": "passed",
+            "return_code": 0,
+            "duration_seconds": 2.614,
+            "stdout": "[  5%] Built target functionlog\n[ 11%] Built target network_metrics\n[ 17%] Built target network_anomaly\n[ 23%] Built target network_analytics\n[ 29%] Built target network_trends\n[ 35%] Built target functionlog_c_demo\n[ 41%] Built target functionlog_cpp_demo\n[ 47%] Built target network_anomaly_demo\n[ 52%] Built target network_pipeline_demo\n[ 58%] Built target test_functionlog\n[ 64%] Built target test_functionlog_analytics\n[ 70%] Built target test_functionlog_json\n[ 76%] Built target test_functionlog_concurrency\n[ 82%] Built target test_network_metrics\n[ 88%] Built target test_network_anomaly\n[ 94%] Built target test_network_analytics\n[100%] Built target test_network_trends\n",
+            "stderr": ""
+        },
+        {
+            "name": "C/C++ Unit Tests",
+            "command": [
+                "ctest",
+                "--test-dir",
+                "build",
+                "--output-on-failure"
+            ],
+            "status": "passed",
+            "return_code": 0,
+            "duration_seconds": 0.757,
+            "stdout": "Internal ctest changing into directory: C:/Users/dell/Documents/network-intelligence-platform/build\nTest project C:/Users/dell/Documents/network-intelligence-platform/build\n    Start 1: functionlog_unit_tests\n1/8 Test #1: functionlog_unit_tests ...........   Passed    0.05 sec\n    Start 2: functionlog_analytics_tests\n2/8 Test #2: functionlog_analytics_tests ......   Passed    0.01 sec\n    Start 3: functionlog_json_tests\n3/8 Test #3: functionlog_json_tests ...........   Passed    0.04 sec\n    Start 4: functionlog_concurrency_tests\n4/8 Test #4: functionlog_concurrency_tests ....   Passed    0.03 sec\n    Start 5: network_metrics_unit_tests\n5/8 Test #5: network_metrics_unit_tests .......   Passed    0.03 sec\n    Start 6: network_anomaly_unit_tests\n6/8 Test #6: network_anomaly_unit_tests .......   Passed    0.01 sec\n    Start 7: network_analytics_unit_tests\n7/8 Test #7: network_analytics_unit_tests .....   Passed    0.02 sec\n    Start 8: network_trends_unit_tests\n8/8 Test #8: network_trends_unit_tests ........   Passed    0.01 sec\n\n100% tests passed, 0 tests failed out of 8\n\nTotal Test time (real) =   0.22 sec\n",
+            "stderr": ""
+        },
+        {
+            "name": "Python Unit Tests",
+            "command": [
+                "C:\\Users\\dell\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+                "-m",
+                "unittest",
+                "discover",
+                "-s",
+                "tests/python",
+                "-p",
+                "test_*.py",
+                "-v"
+            ],
+            "status": "passed",
+            "return_code": 0,
+            "duration_seconds": 1.177,
+            "stdout": "\n=================================================================\nDEVSECOPS PIPELINE SUMMARY\n=================================================================\nOverall status       : failed\nExecution status     : failed\nPassed steps         : 1\nFailed steps         : 2\nSkipped steps        : 5\nSecurity status      : unavailable\nSecurity findings    : unavailable\nPolicy execution     : skipped\nPolicy decision      : unavailable\nInvestigated findings: 0\nInvestigation status : skipped\nRemediation status   : skipped\nProposals generated  : 0\nPatch previews       : unavailable\nPipeline report      : C:\\Users\\dell\\AppData\\Local\\Temp\\tmpw95v3ncw\\devsecops\\reports\\pipeline_report.json\n",
+            "stderr": "test_build_failure_skips_build_and_cpp_tests_and_fails_pipeline (test_devsecops.DevSecOpsOrchestratorTests.test_build_failure_skips_build_and_cpp_tests_and_fails_pipeline) ... ok\ntest_finding_comparison_does_not_mark_remaining_rule_as_resolved (test_devsecops.DevSecOpsOrchestratorTests.test_finding_comparison_does_not_mark_remaining_rule_as_resolved) ... ok\ntest_accepts_valid_response (test_functionlog_gemini_ai.FunctionLogGeminiTests.test_accepts_valid_response) ... ok\ntest_atomic_write_creates_valid_report (test_functionlog_gemini_ai.FunctionLogGeminiTests.test_atomic_write_creates_valid_report) ... ok\ntest_atomic_write_preserves_old_report_on_failure (test_functionlog_gemini_ai.FunctionLogGeminiTests.test_atomic_write_preserves_old_report_on_failure) ... ok\ntest_builds_report_with_local_observed_evidence (test_functionlog_gemini_ai.FunctionLogGeminiTests.test_builds_report_with_local_observed_evidence) ... ok\ntest_rejects_confirmed_hypothesis (test_functionlog_gemini_ai.FunctionLogGeminiTests.test_rejects_confirmed_hypothesis) ... ok\ntest_rejects_incomplete_diagnostic_check (test_functionlog_gemini_ai.FunctionLogGeminiTests.test_rejects_incomplete_diagnostic_check) ... ok\ntest_rejects_invalid_confidence (test_functionlog_gemini_ai.FunctionLogGeminiTests.test_rejects_invalid_confidence) ... ok\ntest_rejects_invalid_gemini_json (test_functionlog_gemini_ai.FunctionLogGeminiTests.test_rejects_invalid_gemini_json) ... ok\ntest_rejects_missing_api_key (test_functionlog_gemini_ai.FunctionLogGeminiTests.test_rejects_missing_api_key) ... ok\ntest_rejects_missing_required_fields (test_functionlog_gemini_ai.FunctionLogGeminiTests.test_rejects_missing_required_fields) ... ok\ntest_duplicate_execution_ids (test_functionlog_mock_ai.FunctionLogMockAITests.test_duplicate_execution_ids) ... ok\ntest_in_progress_execution (test_functionlog_mock_ai.FunctionLogMockAITests.test_in_progress_execution) ... ok\ntest_missing_required_fields (test_functionlog_mock_ai.FunctionLogMockAITests.test_missing_required_fields) ... ok\ntest_nested_failure_propagation (test_functionlog_mock_ai.FunctionLogMockAITests.test_nested_failure_propagation) ... ok\ntest_successful_execution_analysis (test_functionlog_mock_ai.FunctionLogMockAITests.test_successful_execution_analysis) ... ok\ntest_accepts_undefined_percentage_for_zero_baseline (test_network_evidence.NetworkEvidenceTests.test_accepts_undefined_percentage_for_zero_baseline) ... ok\ntest_consolidates_anomalous_records_from_generated_evidence (test_network_evidence.NetworkEvidenceTests.test_consolidates_anomalous_records_from_generated_evidence) ... ok\ntest_rejects_mismatched_counts_between_reports (test_network_evidence.NetworkEvidenceTests.test_rejects_mismatched_counts_between_reports) ... ok\ntest_detects_multi_metric_degradation (test_network_mock_ai.NetworkMockAITests.test_detects_multi_metric_degradation) ... ok\ntest_distinguishes_recovered_and_unrecovered_trends (test_network_mock_ai.NetworkMockAITests.test_distinguishes_recovered_and_unrecovered_trends) ... ok\ntest_generates_investigation_report (test_network_mock_ai.NetworkMockAITests.test_generates_investigation_report) ... ok\ntest_hypotheses_remain_unconfirmed (test_network_mock_ai.NetworkMockAITests.test_hypotheses_remain_unconfirmed) ... ok\ntest_no_anomaly_case (test_network_mock_ai.NetworkMockAITests.test_no_anomaly_case) ... ok\ntest_rejects_inconsistent_evidence_counts (test_network_mock_ai.NetworkMockAITests.test_rejects_inconsistent_evidence_counts) ... ok\ntest_rejects_wrong_report_type (test_network_mock_ai.NetworkMockAITests.test_rejects_wrong_report_type) ... ok\ntest_zero_baseline_uses_absolute_evidence_not_percentage (test_network_mock_ai.NetworkMockAITests.test_zero_baseline_uses_absolute_evidence_not_percentage) ... ok\ntest_balanced_profile (test_policy_profiles.TestPolicyProfiles.test_balanced_profile) ... ok\ntest_default_profile_is_balanced (test_policy_profiles.TestPolicyProfiles.test_default_profile_is_balanced) ... ok\ntest_report_only_profile (test_policy_profiles.TestPolicyProfiles.test_report_only_profile) ... ok\ntest_report_records_selected_profile (test_policy_profiles.TestPolicyProfiles.test_report_records_selected_profile) ... ok\ntest_strict_profile (test_policy_profiles.TestPolicyProfiles.test_strict_profile) ... ok\ntest_all_proposals_require_review (test_remediation_planner.RemediationPlannerTests.test_all_proposals_require_review) ... ok\ntest_application_requires_approval_and_records_changes (test_remediation_planner.RemediationPlannerTests.test_application_requires_approval_and_records_changes) ... ok\ntest_generates_patch_preview (test_remediation_planner.RemediationPlannerTests.test_generates_patch_preview) ... ok\ntest_generates_proposal_for_each_finding (test_remediation_planner.RemediationPlannerTests.test_generates_proposal_for_each_finding) ... ok\ntest_multiline_c_patch_has_valid_diff_lines (test_remediation_planner.RemediationPlannerTests.test_multiline_c_patch_has_valid_diff_lines) ... ok\ntest_never_modifies_source (test_remediation_planner.RemediationPlannerTests.test_never_modifies_source) ... ok\ntest_rejects_inconsistent_finding_count (test_remediation_planner.RemediationPlannerTests.test_rejects_inconsistent_finding_count) ... ok\ntest_rejects_missing_investigation (test_remediation_planner.RemediationPlannerTests.test_rejects_missing_investigation) ... ok\ntest_rejects_path_traversal (test_remediation_planner.RemediationPlannerTests.test_rejects_path_traversal) ... ok\ntest_generates_investigation_for_each_finding (test_security_investigator.SecurityInvestigatorTests.test_generates_investigation_for_each_finding) ... ok\ntest_handles_unknown_rule_safely (test_security_investigator.SecurityInvestigatorTests.test_handles_unknown_rule_safely) ... ok\ntest_identifies_eval_risk (test_security_investigator.SecurityInvestigatorTests.test_identifies_eval_risk) ... ok\ntest_identifies_strcpy_risk (test_security_investigator.SecurityInvestigatorTests.test_identifies_strcpy_risk) ... ok\ntest_rejects_inconsistent_finding_count (test_security_investigator.SecurityInvestigatorTests.test_rejects_inconsistent_finding_count) ... ok\ntest_rejects_wrong_report_type (test_security_investigator.SecurityInvestigatorTests.test_rejects_wrong_report_type) ... ok\ntest_requires_human_review (test_security_investigator.SecurityInvestigatorTests.test_requires_human_review) ... ok\ntest_critical_finding_blocks (test_security_policy.TestSecurityPolicy.test_critical_finding_blocks) ... ok\ntest_high_finding_blocks (test_security_policy.TestSecurityPolicy.test_high_finding_blocks) ... ok\ntest_low_finding_is_informational (test_security_policy.TestSecurityPolicy.test_low_finding_is_informational) ... ok\ntest_medium_finding_warns_without_blocking (test_security_policy.TestSecurityPolicy.test_medium_finding_warns_without_blocking) ... ok\ntest_mixed_findings (test_security_policy.TestSecurityPolicy.test_mixed_findings) ... ok\ntest_rejects_unknown_severity (test_security_policy.TestSecurityPolicy.test_rejects_unknown_severity) ... ok\ntest_rejects_wrong_report_type (test_security_policy.TestSecurityPolicy.test_rejects_wrong_report_type) ... ok\ntest_detects_expected_fixture_findings (test_security_scanner.TestSecurityScanner.test_detects_expected_fixture_findings) ... ok\ntest_does_not_flag_clean_code (test_security_scanner.TestSecurityScanner.test_does_not_flag_clean_code) ... ok\ntest_ignores_build_virtualenv_cache_and_legacy_sources (test_security_scanner.TestSecurityScanner.test_ignores_build_virtualenv_cache_and_legacy_sources) ... ok\ntest_secret_values_are_redacted (test_security_scanner.TestSecurityScanner.test_secret_values_are_redacted) ... ok\n\n----------------------------------------------------------------------\nRan 60 tests in 0.165s\n\nOK\n"
+        },
+        {
+            "name": "Security Scan",
+            "command": [
+                "C:\\Users\\dell\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+                "devsecops/agent/security_scanner.py",
+                "--target",
+                "C:\\Users\\dell\\Documents\\network-intelligence-platform\\devsecops\\fixtures\\clean_app"
+            ],
+            "status": "passed",
+            "return_code": 0,
+            "duration_seconds": 0.113,
+            "stdout": "\nDEVSECOPS SECURITY SCAN\nTarget          : C:\\Users\\dell\\Documents\\network-intelligence-platform\\devsecops\\fixtures\\clean_app\nFiles scanned   : 1\nTotal findings  : 0\nSeverity counts : {'critical': 0, 'high': 0, 'medium': 0, 'low': 0}\nReport          : C:\\Users\\dell\\Documents\\network-intelligence-platform\\devsecops\\reports\\security_scan_report.json\n",
+            "stderr": ""
+        },
+        {
+            "name": "Security Policy Evaluation",
+            "command": [
+                "C:\\Users\\dell\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+                "devsecops/agent/policy_engine.py",
+                "--profile",
+                "balanced"
+            ],
+            "status": "passed",
+            "return_code": 0,
+            "duration_seconds": 0.101,
+            "stdout": "\nDEVSECOPS SECURITY POLICY\nProfile        : balanced\nFindings       : 0\nBlocked        : 0\nWarnings       : 0\nInformational  : 0\nDecision       : passed\nReport         : C:\\Users\\dell\\Documents\\network-intelligence-platform\\devsecops\\reports\\security_policy_report.json\n",
+            "stderr": ""
+        },
+        {
+            "name": "Security Investigation",
+            "command": [
+                "C:\\Users\\dell\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+                "devsecops/agent/security_investigator.py"
+            ],
+            "status": "passed",
+            "return_code": 0,
+            "duration_seconds": 0.114,
+            "stdout": "\nDEVSECOPS SECURITY INVESTIGATION\n--------------------------------\nFindings investigated : 0\nHuman review required : 0\nReport                : C:\\Users\\dell\\Documents\\network-intelligence-platform\\devsecops\\reports\\security_investigation_report.json\n",
+            "stderr": ""
+        },
+        {
+            "name": "Security Remediation Planning",
+            "command": [
+                "C:\\Users\\dell\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+                "devsecops/agent/remediation_planner.py",
+                "--target",
+                "C:\\Users\\dell\\Documents\\network-intelligence-platform\\devsecops\\fixtures\\clean_app",
+                "--scan-report",
+                "C:\\Users\\dell\\Documents\\network-intelligence-platform\\devsecops\\reports\\security_scan_report.json",
+                "--investigation-report",
+                "C:\\Users\\dell\\Documents\\network-intelligence-platform\\devsecops\\reports\\security_investigation_report.json",
+                "--output",
+                "C:\\Users\\dell\\Documents\\network-intelligence-platform\\devsecops\\reports\\remediation_plan.json",
+                "--patch",
+                "C:\\Users\\dell\\Documents\\network-intelligence-platform\\devsecops\\reports\\remediation_preview.patch"
+            ],
+            "status": "passed",
+            "return_code": 0,
+            "duration_seconds": 0.129,
+            "stdout": "\nDEVSECOPS REMEDIATION PLANNER\n-----------------------------\nFindings received    : 0\nProposals generated  : 0\nPatch previews       : 0\nHuman reviews needed : 0\nSource files modified: No\nPlan                 : C:\\Users\\dell\\Documents\\network-intelligence-platform\\devsecops\\reports\\remediation_plan.json\nPatch preview        : C:\\Users\\dell\\Documents\\network-intelligence-platform\\devsecops\\reports\\remediation_preview.patch\n",
+            "stderr": ""
+        }
+    ]
+}

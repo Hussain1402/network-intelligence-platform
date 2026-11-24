@@ -1,0 +1,17 @@
+{
+  "report_type": "network_analytics_report",
+  "summary": {
+    "total_measurements": 12,
+    "anomaly_count": 3,
+    "normal_count": 9,
+    "anomaly_rate_percent": 25
+  },
+  "statistics": {
+    "latency_ms": {"minimum": 38, "maximum": 240, "average": 85.0833},
+    "packet_loss_percent": {"minimum": 0.1, "maximum": 7, "average": 1.6},
+    "throughput_mbps": {"minimum": 32, "maximum": 97, "average": 79},
+    "error_rate_percent": {"minimum": 0.4, "maximum": 18, "average": 4.225},
+    "memory_used_mb": {"minimum": 512, "maximum": 920, "average": 613.75},
+    "memory_usage_percent": {"minimum": 42.7, "maximum": 76.7, "average": 51.1583}
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "project": "Function Execution Analysis",
+  "summary": {
+    "total_executions": 2,
+    "successful_executions": 0,
+    "failed_executions": 1,
+    "in_progress_executions": 1,
+    "unique_functions": 2,
+    "failure_rate_percent": 100.000000
+  },
+  "performance": {
+    "average_execution_time_ms": 0.030500,
+    "minimum_execution_time_ms": 0.030500,
+    "maximum_execution_time_ms": 0.030500
+  },
+  "function_statistics": [
+    {
+      "function_name": "worker\"task",
+      "total_executions": 1,
+      "successful_executions": 0,
+      "failed_executions": 1,
+      "average_execution_time_ms": 0.030500,
+      "minimum_execution_time_ms": 0.030500,
+      "maximum_execution_time_ms": 0.030500
+    },
+    {
+      "function_name": "database_query",
+      "total_executions": 1,
+      "successful_executions": 0,
+      "failed_executions": 0,
+      "average_execution_time_ms": 0.000000,
+      "minimum_execution_time_ms": 0.000000,
+      "maximum_execution_time_ms": 0.000000
+    }
+  ],
+  "execution_records": [
+    {
+      "id": 1,
+      "parent_id": 0,
+      "function_name": "worker\"task",
+      "caller_name": "main",
+      "start_timestamp": "2026-11-24T12:16:09Z",
+      "end_timestamp": "2026-11-24T12:16:09Z",
+      "execution_time_ms": 0.030500,
+      "status": "FAILED",
+      "error_code": 500,
+      "error_message": "line1\nline2 \"failure\""
+    },
+    {
+      "id": 2,
+      "parent_id": 0,
+      "function_name": "database_query",
+      "caller_name": "main",
+      "start_timestamp": "2026-11-24T12:16:09Z",
+      "end_timestamp": null,
+      "execution_time_ms": null,
+      "status": "IN_PROGRESS",
+      "error_code": 0,
+      "error_message": ""
+    }
+  ],
+  "root_cause_investigation": {
+    "status": "pending"
+  }
+}

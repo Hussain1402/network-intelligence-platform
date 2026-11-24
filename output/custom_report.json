@@ -1,0 +1,106 @@
+{
+  "report_type": "network_anomaly_report",
+  "summary": {
+    "total_measurements": 10,
+    "anomaly_count": 3,
+    "normal_count": 7
+  },
+  "thresholds": {
+    "max_latency_ms": 100,
+    "max_packet_loss_percent": 2,
+    "min_throughput_mbps": 60,
+    "max_error_rate_percent": 5
+  },
+  "measurements": [
+    {
+      "timestamp": "2026-10-15T10:00:00",
+      "latency_ms": 40,
+      "packet_loss_percent": 0.2,
+      "throughput_mbps": 95,
+      "error_rate_percent": 0.5,
+      "is_anomaly": false,
+      "reasons": []
+    },
+    {
+      "timestamp": "2026-10-15T10:01:00",
+      "latency_ms": 42,
+      "packet_loss_percent": 0.1,
+      "throughput_mbps": 93,
+      "error_rate_percent": 0.4,
+      "is_anomaly": false,
+      "reasons": []
+    },
+    {
+      "timestamp": "2026-10-15T10:02:00",
+      "latency_ms": 38,
+      "packet_loss_percent": 0.2,
+      "throughput_mbps": 97,
+      "error_rate_percent": 0.6,
+      "is_anomaly": false,
+      "reasons": []
+    },
+    {
+      "timestamp": "2026-10-15T10:03:00",
+      "latency_ms": 41,
+      "packet_loss_percent": 0.1,
+      "throughput_mbps": 94,
+      "error_rate_percent": 0.5,
+      "is_anomaly": false,
+      "reasons": []
+    },
+    {
+      "timestamp": "2026-10-15T10:04:00",
+      "latency_ms": 43,
+      "packet_loss_percent": 0.3,
+      "throughput_mbps": 92,
+      "error_rate_percent": 0.7,
+      "is_anomaly": false,
+      "reasons": []
+    },
+    {
+      "timestamp": "2026-10-15T10:05:00",
+      "latency_ms": 45,
+      "packet_loss_percent": 0.4,
+      "throughput_mbps": 90,
+      "error_rate_percent": 0.8,
+      "is_anomaly": false,
+      "reasons": []
+    },
+    {
+      "timestamp": "2026-10-15T10:06:00",
+      "latency_ms": 180,
+      "packet_loss_percent": 4.5,
+      "throughput_mbps": 48,
+      "error_rate_percent": 12,
+      "is_anomaly": true,
+      "reasons": ["high_latency","high_packet_loss","low_throughput","high_error_rate"]
+    },
+    {
+      "timestamp": "2026-10-15T10:07:00",
+      "latency_ms": 240,
+      "packet_loss_percent": 7,
+      "throughput_mbps": 32,
+      "error_rate_percent": 18,
+      "is_anomaly": true,
+      "reasons": ["high_latency","high_packet_loss","low_throughput","high_error_rate"]
+    },
+    {
+      "timestamp": "2026-10-15T10:08:00",
+      "latency_ms": 210,
+      "packet_loss_percent": 5.5,
+      "throughput_mbps": 39,
+      "error_rate_percent": 15,
+      "is_anomaly": true,
+      "reasons": ["high_latency","high_packet_loss","low_throughput","high_error_rate"]
+    },
+    {
+      "timestamp": "2026-10-15T10:09:00",
+      "latency_ms": 55,
+      "packet_loss_percent": 0.5,
+      "throughput_mbps": 85,
+      "error_rate_percent": 1.2,
+      "is_anomaly": false,
+      "reasons": []
+    }
+  ]
+}

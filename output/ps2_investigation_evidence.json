@@ -1,0 +1,181 @@
+{
+    "report_type": "ps2_network_investigation_evidence",
+    "generated_at_utc": "2026-11-19T17:41:58.095421+00:00",
+    "sources": {
+        "anomaly_report": "output\\network_anomaly_report.json",
+        "analytics_report": "output\\network_analytics_report.json",
+        "trend_report": "output\\network_trend_report.json"
+    },
+    "summary": {
+        "total_measurements": 12,
+        "normal_measurements": 9,
+        "anomalous_measurements": 3,
+        "anomaly_rate_percent": 25,
+        "baseline_measurements": 3,
+        "trend_analysis_measurements": 9
+    },
+    "thresholds": {
+        "max_latency_ms": 100,
+        "max_packet_loss_percent": 2,
+        "min_throughput_mbps": 60,
+        "max_error_rate_percent": 5,
+        "max_memory_usage_percent": 60
+    },
+    "aggregate_statistics": {
+        "latency_ms": {
+            "minimum": 38,
+            "maximum": 240,
+            "average": 85.0833
+        },
+        "packet_loss_percent": {
+            "minimum": 0.1,
+            "maximum": 7,
+            "average": 1.6
+        },
+        "throughput_mbps": {
+            "minimum": 32,
+            "maximum": 97,
+            "average": 79
+        },
+        "error_rate_percent": {
+            "minimum": 0.4,
+            "maximum": 18,
+            "average": 4.225
+        },
+        "memory_used_mb": {
+            "minimum": 512,
+            "maximum": 920,
+            "average": 613.75
+        },
+        "memory_usage_percent": {
+            "minimum": 42.7,
+            "maximum": 76.7,
+            "average": 51.1583
+        }
+    },
+    "anomalous_measurements": [
+        {
+            "timestamp": "2026-10-15T10:06:00",
+            "latency_ms": 180,
+            "packet_loss_percent": 4.5,
+            "throughput_mbps": 48,
+            "error_rate_percent": 12,
+            "memory_used_mb": 780,
+            "memory_usage_percent": 65,
+            "is_anomaly": true,
+            "reasons": [
+                "high_latency",
+                "high_packet_loss",
+                "low_throughput",
+                "high_error_rate",
+                "high_memory_usage"
+            ]
+        },
+        {
+            "timestamp": "2026-10-15T10:07:00",
+            "latency_ms": 240,
+            "packet_loss_percent": 7,
+            "throughput_mbps": 32,
+            "error_rate_percent": 18,
+            "memory_used_mb": 920,
+            "memory_usage_percent": 76.7,
+            "is_anomaly": true,
+            "reasons": [
+                "high_latency",
+                "high_packet_loss",
+                "low_throughput",
+                "high_error_rate",
+                "high_memory_usage"
+            ]
+        },
+        {
+            "timestamp": "2026-10-15T10:08:00",
+            "latency_ms": 210,
+            "packet_loss_percent": 5.5,
+            "throughput_mbps": 39,
+            "error_rate_percent": 15,
+            "memory_used_mb": 880,
+            "memory_usage_percent": 73.3,
+            "is_anomaly": true,
+            "reasons": [
+                "high_latency",
+                "high_packet_loss",
+                "low_throughput",
+                "high_error_rate",
+                "high_memory_usage"
+            ]
+        }
+    ],
+    "historical_trends": [
+        {
+            "metric": "latency",
+            "detected": true,
+            "recovered": true,
+            "baseline_average": 40,
+            "observed_average": 210,
+            "deviation_percent": 425,
+            "consecutive_measurements": 3,
+            "start_timestamp": "2026-10-15T10:06:00",
+            "end_timestamp": "2026-10-15T10:08:00",
+            "recovery_timestamp": "2026-10-15T10:09:00"
+        },
+        {
+            "metric": "packet_loss",
+            "detected": true,
+            "recovered": true,
+            "baseline_average": 0.166667,
+            "observed_average": 3.03333,
+            "deviation_percent": 1720,
+            "consecutive_measurements": 6,
+            "start_timestamp": "2026-10-15T10:04:00",
+            "end_timestamp": "2026-10-15T10:09:00",
+            "recovery_timestamp": "2026-10-15T10:10:00"
+        },
+        {
+            "metric": "throughput",
+            "detected": true,
+            "recovered": true,
+            "baseline_average": 95,
+            "observed_average": 39.6667,
+            "deviation_percent": 58.2456,
+            "consecutive_measurements": 3,
+            "start_timestamp": "2026-10-15T10:06:00",
+            "end_timestamp": "2026-10-15T10:08:00",
+            "recovery_timestamp": "2026-10-15T10:09:00"
+        },
+        {
+            "metric": "error_rate",
+            "detected": true,
+            "recovered": true,
+            "baseline_average": 0.5,
+            "observed_average": 9.4,
+            "deviation_percent": 1780,
+            "consecutive_measurements": 5,
+            "start_timestamp": "2026-10-15T10:05:00",
+            "end_timestamp": "2026-10-15T10:09:00",
+            "recovery_timestamp": "2026-10-15T10:10:00"
+        },
+        {
+            "metric": "memory_usage",
+            "detected": true,
+            "recovered": true,
+            "baseline_average": 43.0667,
+            "observed_average": 71.6667,
+            "deviation_percent": 66.4087,
+            "consecutive_measurements": 3,
+            "start_timestamp": "2026-10-15T10:06:00",
+            "end_timestamp": "2026-10-15T10:08:00",
+            "recovery_timestamp": "2026-10-15T10:09:00"
+        }
+    ],
+    "analysis_guidance": [
+        "Treat recorded measurements and calculated statistics as observed evidence.",
+        "Anomaly thresholds and historical baseline thresholds are different rules.",
+        "A measurement can return below an anomaly threshold while remaining outside its historical baseline range.",
+        "A detected trend is not proof of its underlying cause.",
+        "Do not claim recovery unless the trend report explicitly records recovery.",
+        "Memory usage percentage is used for threshold analysis; memory_used_mb describes consumption.",
+        "Root-cause hypotheses must remain unconfirmed until independently corroborated.",
+        "No live network, server, CPU, deployment, or external telemetry checks were performed."
+    ]
+}

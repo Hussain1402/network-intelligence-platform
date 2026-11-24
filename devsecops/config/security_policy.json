@@ -1,0 +1,23 @@
+﻿{
+    "default_profile": "balanced",
+    "profiles": {
+        "strict": {
+            "critical": "block",
+            "high": "block",
+            "medium": "block",
+            "low": "warn"
+        },
+        "balanced": {
+            "critical": "block",
+            "high": "block",
+            "medium": "warn",
+            "low": "informational"
+        },
+        "report_only": {
+            "critical": "informational",
+            "high": "informational",
+            "medium": "informational",
+            "low": "informational"
+        }
+    }
+}

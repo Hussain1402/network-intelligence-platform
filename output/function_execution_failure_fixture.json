@@ -1,0 +1,65 @@
+{
+    "project": "Function Execution Analysis",
+    "summary": {
+        "total_executions": 2,
+        "successful_executions": 0,
+        "failed_executions": 2,
+        "in_progress_executions": 0,
+        "unique_functions": 2,
+        "failure_rate_percent": 100.0
+    },
+    "performance": {
+        "average_execution_time_ms": 0.01175,
+        "minimum_execution_time_ms": 0.0013,
+        "maximum_execution_time_ms": 0.0222
+    },
+    "function_statistics": [
+        {
+            "function_name": "process_request",
+            "total_executions": 1,
+            "successful_executions": 0,
+            "failed_executions": 1,
+            "average_execution_time_ms": 0.0222,
+            "minimum_execution_time_ms": 0.0222,
+            "maximum_execution_time_ms": 0.0222
+        },
+        {
+            "function_name": "validate_input",
+            "total_executions": 1,
+            "successful_executions": 0,
+            "failed_executions": 1,
+            "average_execution_time_ms": 0.0013,
+            "minimum_execution_time_ms": 0.0013,
+            "maximum_execution_time_ms": 0.0013
+        }
+    ],
+    "execution_records": [
+        {
+            "id": 1,
+            "parent_id": 0,
+            "function_name": "process_request",
+            "caller_name": "main",
+            "start_timestamp": "2026-11-04T11:19:31Z",
+            "end_timestamp": "2026-11-04T11:19:31Z",
+            "execution_time_ms": 0.0222,
+            "status": "FAILED",
+            "error_code": 1002,
+            "error_message": "Request failed because validation failed"
+        },
+        {
+            "id": 2,
+            "parent_id": 1,
+            "function_name": "validate_input",
+            "caller_name": "process_request",
+            "start_timestamp": "2026-11-04T11:19:31Z",
+            "end_timestamp": "2026-11-04T11:19:31Z",
+            "execution_time_ms": 0.0013,
+            "status": "FAILED",
+            "error_code": 1002,
+            "error_message": "Input validation failed"
+        }
+    ],
+    "root_cause_investigation": {
+        "status": "pending"
+    }
+}

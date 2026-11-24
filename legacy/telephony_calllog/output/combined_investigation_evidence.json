@@ -1,0 +1,104 @@
+{
+    "report_type": "combined_network_investigation_evidence",
+    "generated_at_utc": "2026-11-07T08:20:46.281355+00:00",
+    "sources": {
+        "call_log": "output\\investigation.json",
+        "network_metrics": "output\\network_anomaly_report.json"
+    },
+    "cross_source_summary": {
+        "total_calls": 15,
+        "failed_calls": 6,
+        "call_failure_rate_percent": 40.0,
+        "call_log_anomaly_windows": 1,
+        "network_measurements": 10,
+        "network_anomalies": 3,
+        "normal_network_measurements": 7
+    },
+    "call_log_evidence": {
+        "summary": {
+            "total_calls": 15,
+            "successful_calls": 9,
+            "failed_calls": 6,
+            "failure_rate_percent": 40.0,
+            "average_success_duration_ms": 1333.33
+        },
+        "failure_codes": [
+            {
+                "code": "NETWORK_TIMEOUT",
+                "count": 6
+            }
+        ],
+        "anomalies": [
+            {
+                "window_start": "2026-10-14T10:01:00",
+                "total_calls": 10,
+                "failed_calls": 6,
+                "failure_rate_percent": 60.0
+            }
+        ]
+    },
+    "network_evidence": {
+        "summary": {
+            "total_measurements": 10,
+            "anomaly_count": 3,
+            "normal_count": 7
+        },
+        "thresholds": {
+            "max_latency_ms": 100,
+            "max_packet_loss_percent": 2,
+            "min_throughput_mbps": 60,
+            "max_error_rate_percent": 5
+        },
+        "anomalous_measurements": [
+            {
+                "timestamp": "2026-10-15T10:06:00",
+                "latency_ms": 180,
+                "packet_loss_percent": 4.5,
+                "throughput_mbps": 48,
+                "error_rate_percent": 12,
+                "is_anomaly": true,
+                "reasons": [
+                    "high_latency",
+                    "high_packet_loss",
+                    "low_throughput",
+                    "high_error_rate"
+                ]
+            },
+            {
+                "timestamp": "2026-10-15T10:07:00",
+                "latency_ms": 240,
+                "packet_loss_percent": 7,
+                "throughput_mbps": 32,
+                "error_rate_percent": 18,
+                "is_anomaly": true,
+                "reasons": [
+                    "high_latency",
+                    "high_packet_loss",
+                    "low_throughput",
+                    "high_error_rate"
+                ]
+            },
+            {
+                "timestamp": "2026-10-15T10:08:00",
+                "latency_ms": 210,
+                "packet_loss_percent": 5.5,
+                "throughput_mbps": 39,
+                "error_rate_percent": 15,
+                "is_anomaly": true,
+                "reasons": [
+                    "high_latency",
+                    "high_packet_loss",
+                    "low_throughput",
+                    "high_error_rate"
+                ]
+            }
+        ]
+    },
+    "analysis_guidance": [
+        "Treat supplied measurements and counts as observed evidence.",
+        "Compare timestamps only where the available time ranges overlap.",
+        "Do not assume that correlation proves causation.",
+        "Keep root-cause explanations unconfirmed until corroborated.",
+        "No live network or server telemetry is included unless supplied in the input evidence."
+    ]
+}

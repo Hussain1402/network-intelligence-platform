@@ -1,0 +1,162 @@
+{
+    "report_type": "combined_gemini_network_investigation",
+    "model": "gemini-3.8-flash",
+    "source_report_type": "combined_network_investigation_evidence",
+    "cross_source_summary": {
+        "total_calls": 15,
+        "failed_calls": 6,
+        "call_failure_rate_percent": 40.0,
+        "call_log_anomaly_windows": 1,
+        "network_measurements": 10,
+        "network_anomalies": 3,
+        "normal_network_measurements": 7
+    },
+    "evidence": {
+        "report_type": "combined_network_investigation_evidence",
+        "generated_at_utc": "2026-10-15T15:09:28.489418+00:00",
+        "sources": {
+            "call_log": "output\\investigation.json",
+            "network_metrics": "output\\custom_report.json"
+        },
+        "cross_source_summary": {
+            "total_calls": 15,
+            "failed_calls": 6,
+            "call_failure_rate_percent": 40.0,
+            "call_log_anomaly_windows": 1,
+            "network_measurements": 10,
+            "network_anomalies": 3,
+            "normal_network_measurements": 7
+        },
+        "call_log_evidence": {
+            "summary": {
+                "total_calls": 15,
+                "successful_calls": 9,
+                "failed_calls": 6,
+                "failure_rate_percent": 40.0,
+                "average_success_duration_ms": 1333.33
+            },
+            "failure_codes": [
+                {
+                    "code": "NETWORK_TIMEOUT",
+                    "count": 6
+                }
+            ],
+            "anomalies": [
+                {
+                    "window_start": "2026-10-14T10:01:00",
+                    "total_calls": 10,
+                    "failed_calls": 6,
+                    "failure_rate_percent": 60.0
+                }
+            ]
+        },
+        "network_evidence": {
+            "summary": {
+                "total_measurements": 10,
+                "anomaly_count": 3,
+                "normal_count": 7
+            },
+            "thresholds": {
+                "max_latency_ms": 100,
+                "max_packet_loss_percent": 2,
+                "min_throughput_mbps": 60,
+                "max_error_rate_percent": 5
+            },
+            "anomalous_measurements": [
+                {
+                    "timestamp": "2026-10-15T10:06:00",
+                    "latency_ms": 180,
+                    "packet_loss_percent": 4.5,
+                    "throughput_mbps": 48,
+                    "error_rate_percent": 12,
+                    "is_anomaly": true,
+                    "reasons": [
+                        "high_latency",
+                        "high_packet_loss",
+                        "low_throughput",
+                        "high_error_rate"
+                    ]
+                },
+                {
+                    "timestamp": "2026-10-15T10:07:00",
+                    "latency_ms": 240,
+                    "packet_loss_percent": 7,
+                    "throughput_mbps": 32,
+                    "error_rate_percent": 18,
+                    "is_anomaly": true,
+                    "reasons": [
+                        "high_latency",
+                        "high_packet_loss",
+                        "low_throughput",
+                        "high_error_rate"
+                    ]
+                },
+                {
+                    "timestamp": "2026-10-15T10:08:00",
+                    "latency_ms": 210,
+                    "packet_loss_percent": 5.5,
+                    "throughput_mbps": 39,
+                    "error_rate_percent": 15,
+                    "is_anomaly": true,
+                    "reasons": [
+                        "high_latency",
+                        "high_packet_loss",
+                        "low_throughput",
+                        "high_error_rate"
+                    ]
+                }
+            ]
+        },
+        "analysis_guidance": [
+            "Treat supplied measurements and counts as observed evidence.",
+            "Compare timestamps only where the available time ranges overlap.",
+            "Do not assume that correlation proves causation.",
+            "Keep root-cause explanations unconfirmed until corroborated.",
+            "No live network or server telemetry is included unless supplied in the input evidence."
+        ]
+    },
+    "root_cause_hypotheses": [
+        {
+            "hypothesis": "The call failures on 2026-10-14 and the network metric anomalies on 2026-10-15 are independent events.",
+            "confidence": "medium",
+            "status": "unconfirmed",
+            "reasoning": "The 6 call failures with NETWORK_TIMEOUT occurred during an anomaly window starting at 2026-10-14T10:01:00, whereas the supplied network anomalies (elevated latency, packet loss, and error rates) occurred roughly 24 hours later from 2026-10-15T10:06:00 to 2026-10-15T10:08:00. Because the timestamps do not overlap, the recorded network anomalies cannot have caused the call failures on the preceding day."
+        },
+        {
+            "hypothesis": "A network degradation event occurred on 2026-10-14 that was not captured in the supplied network metrics.",
+            "confidence": "low",
+            "status": "unconfirmed",
+            "reasoning": "All 6 failed calls were recorded with the failure code NETWORK_TIMEOUT, which is characteristic of transit latency or packet loss. However, evidence is insufficient to confirm this because no network telemetry is provided for 2026-10-14."
+        },
+        {
+            "hypothesis": "A clock desynchronization or logging date discrepancy exists between the call logging system and network metrics.",
+            "confidence": "low",
+            "status": "unconfirmed",
+            "reasoning": "Both anomaly periods occurred near the 10:00 hour mark (10:01:00 vs. 10:06:00-10:08:00), but with dates separated by exactly one day. If system clocks were skewed or incorrectly indexed, the events might be correlated. However, no metadata regarding host time synchronization or NTP status is present in the evidence."
+        }
+    ],
+    "recommended_diagnostic_checks": [
+        {
+            "priority": "high",
+            "check": "Retrieve network metric measurements corresponding to the call anomaly window on 2026-10-14 between 10:00:00 and 10:15:00 UTC.",
+            "purpose": "Verify whether latency, packet loss, or throughput anomalies were actually present during the 2026-10-14 call failure window."
+        },
+        {
+            "priority": "high",
+            "check": "Validate system time synchronization, NTP configurations, and timestamp generation logic across both call-log and network-monitoring sources.",
+            "purpose": "Confirm whether the one-day discrepancy between the 2026-10-14 call logs and 2026-10-15 network metrics reflects distinct occurrences or a logging clock misconfiguration."
+        },
+        {
+            "priority": "medium",
+            "check": "Query call logs during the network degradation window on 2026-10-15 between 10:05:00 and 10:10:00 UTC.",
+            "purpose": "Evaluate whether the confirmed network anomalies on 2026-10-15 resulted in any observed call degradation or NETWORK_TIMEOUT errors."
+        }
+    ],
+    "limitations": [
+        "Root-cause hypotheses are unconfirmed.",
+        "The analysis uses only the supplied evidence.",
+        "No live network or server telemetry was inspected.",
+        "Correlation between datasets does not prove causation.",
+        "Confidence values are qualitative AI assessments."
+    ]
+}

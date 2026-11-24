@@ -1,0 +1,17 @@
+{
+  "report_type": "devsecops_remediation_plan",
+  "generated_at": "2026-11-19T17:45:34.467504+00:00",
+  "mode": "preview_only",
+  "source_findings": 0,
+  "proposals_generated": 0,
+  "patches_generated": 0,
+  "human_review_required": 0,
+  "source_modified": false,
+  "proposals": [],
+  "limitations": [
+    "Remediation proposals are deterministic rule-based suggestions.",
+    "Generated diffs have not been applied to source files.",
+    "Some changes require application-specific decisions.",
+    "All proposals require human review and testing."
+  ]
+}

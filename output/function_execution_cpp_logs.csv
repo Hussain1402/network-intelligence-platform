@@ -1,0 +1,4 @@
+id,parent_id,function_name,caller_name,start_timestamp,end_timestamp,execution_time_ms,status,error_code,error_message
+1,0,"process_request","main","2026-11-19T17:41:53Z","2026-11-19T17:41:53Z",0.021100,SUCCESS,0,""
+2,1,"validate_input","process_request","2026-11-19T17:41:53Z","2026-11-19T17:41:53Z",0.001100,SUCCESS,0,""
+3,0,"process_invalid_request","main","2026-11-19T17:41:53Z","2026-11-19T17:41:53Z",2.435900,FAILED,2001,"Invalid request detected"

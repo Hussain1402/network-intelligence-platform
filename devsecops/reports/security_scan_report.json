@@ -1,0 +1,25 @@
+{
+    "report_type": "devsecops_security_scan",
+    "generated_at": "2026-11-19T17:45:34.095188+00:00",
+    "scan_root": "C:\\Users\\dell\\Documents\\network-intelligence-platform\\devsecops\\fixtures\\clean_app",
+    "scanner": "local_rule_based_scanner",
+    "limitations": [
+        "This is a basic pattern-based scanner, not a complete security audit.",
+        "Findings may include false positives and require manual review.",
+        "Dependency vulnerability analysis is not included yet.",
+        "No files are modified by this scanner."
+    ],
+    "summary": {
+        "scanned_files": 1,
+        "total_findings": 0,
+        "severity_counts": {
+            "critical": 0,
+            "high": 0,
+            "medium": 0,
+            "low": 0
+        },
+        "scan_errors": 0
+    },
+    "findings": [],
+    "scan_errors": []
+}

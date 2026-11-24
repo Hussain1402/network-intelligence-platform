@@ -1,0 +1,70 @@
+{
+  "report_type": "network_trend_report",
+  "summary": {
+    "total_measurements": 8,
+    "baseline_measurements": 3,
+    "analyzed_measurements": 5
+  },
+  "trends": [
+    {
+      "metric": "latency",
+      "detected": true,
+      "recovered": true,
+      "baseline_average": 10,
+      "observed_average": 20,
+      "deviation_percent": 100,
+      "consecutive_measurements": 2,
+      "start_timestamp": "2026-10-15T10:03:00",
+      "end_timestamp": "2026-10-15T10:04:00",
+      "recovery_timestamp": "2026-10-15T10:05:00"
+    },
+    {
+      "metric": "packet_loss",
+      "detected": true,
+      "recovered": true,
+      "baseline_average": 1,
+      "observed_average": 2,
+      "deviation_percent": 100,
+      "consecutive_measurements": 2,
+      "start_timestamp": "2026-10-15T10:03:00",
+      "end_timestamp": "2026-10-15T10:04:00",
+      "recovery_timestamp": "2026-10-15T10:05:00"
+    },
+    {
+      "metric": "throughput",
+      "detected": true,
+      "recovered": true,
+      "baseline_average": 100,
+      "observed_average": 50,
+      "deviation_percent": 50,
+      "consecutive_measurements": 2,
+      "start_timestamp": "2026-10-15T10:03:00",
+      "end_timestamp": "2026-10-15T10:04:00",
+      "recovery_timestamp": "2026-10-15T10:05:00"
+    },
+    {
+      "metric": "error_rate",
+      "detected": true,
+      "recovered": true,
+      "baseline_average": 1,
+      "observed_average": 2,
+      "deviation_percent": 100,
+      "consecutive_measurements": 2,
+      "start_timestamp": "2026-10-15T10:03:00",
+      "end_timestamp": "2026-10-15T10:04:00",
+      "recovery_timestamp": "2026-10-15T10:05:00"
+    },
+    {
+      "metric": "memory_usage",
+      "detected": true,
+      "recovered": true,
+      "baseline_average": 20,
+      "observed_average": 40,
+      "deviation_percent": 100,
+      "consecutive_measurements": 2,
+      "start_timestamp": "2026-10-15T10:03:00",
+      "end_timestamp": "2026-10-15T10:04:00",
+      "recovery_timestamp": "2026-10-15T10:05:00"
+    }
+  ]
+}

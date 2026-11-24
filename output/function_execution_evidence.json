@@ -1,0 +1,65 @@
+{
+  "project": "Function Execution Analysis",
+  "summary": {
+    "total_executions": 2,
+    "successful_executions": 2,
+    "failed_executions": 0,
+    "in_progress_executions": 0,
+    "unique_functions": 2,
+    "failure_rate_percent": 0.000000
+  },
+  "performance": {
+    "average_execution_time_ms": 0.014850,
+    "minimum_execution_time_ms": 0.001100,
+    "maximum_execution_time_ms": 0.028600
+  },
+  "function_statistics": [
+    {
+      "function_name": "process_request",
+      "total_executions": 1,
+      "successful_executions": 1,
+      "failed_executions": 0,
+      "average_execution_time_ms": 0.028600,
+      "minimum_execution_time_ms": 0.028600,
+      "maximum_execution_time_ms": 0.028600
+    },
+    {
+      "function_name": "validate_input",
+      "total_executions": 1,
+      "successful_executions": 1,
+      "failed_executions": 0,
+      "average_execution_time_ms": 0.001100,
+      "minimum_execution_time_ms": 0.001100,
+      "maximum_execution_time_ms": 0.001100
+    }
+  ],
+  "execution_records": [
+    {
+      "id": 1,
+      "parent_id": 0,
+      "function_name": "process_request",
+      "caller_name": "main",
+      "start_timestamp": "2026-11-19T17:41:53Z",
+      "end_timestamp": "2026-11-19T17:41:53Z",
+      "execution_time_ms": 0.028600,
+      "status": "SUCCESS",
+      "error_code": 0,
+      "error_message": ""
+    },
+    {
+      "id": 2,
+      "parent_id": 1,
+      "function_name": "validate_input",
+      "caller_name": "process_request",
+      "start_timestamp": "2026-11-19T17:41:53Z",
+      "end_timestamp": "2026-11-19T17:41:53Z",
+      "execution_time_ms": 0.001100,
+      "status": "SUCCESS",
+      "error_code": 0,
+      "error_message": ""
+    }
+  ],
+  "root_cause_investigation": {
+    "status": "pending"
+  }
+}
